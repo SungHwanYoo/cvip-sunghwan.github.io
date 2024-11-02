@@ -1,11 +1,190 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>개발 & 연구 블로그</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #34495e;
+            --accent-color: #3498db;
+            --text-color: #2c3e50;
+            --background-color: #f5f7fa;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        /* 사이드바 스타일 */
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 250px;
+            height: 100vh;
+            background-color: var(--primary-color);
+            padding: 2rem;
+            color: white;
+        }
+
+        .profile {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .profile img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin-bottom: 1rem;
+        }
+
+        /* 메인 컨텐츠 영역 */
+        .main-content {
+            margin-left: 250px;
+            padding: 2rem;
+        }
+
+        /* 포스트 카드 스타일 */
+        .post-card {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
+        }
+
+        .post-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .post-header {
+            border-bottom: 1px solid #eee;
+            padding-bottom: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .post-title {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .post-meta {
+            font-size: 0.9rem;
+            color: #666;
+            display: flex;
+            gap: 1rem;
+        }
+
+        .tags {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .tag {
+            background-color: #e0e6ed;
+            padding: 0.2rem 0.6rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            color: var(--primary-color);
+        }
+
+        /* 검색바 스타일 */
+        .search-bar {
+            background: white;
+            padding: 1rem;
+            border-radius: 5px;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .search-bar input {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+        }
+
+        /* 반응형 디자인 */
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+            }
+
+            .main-content {
+                margin-left: 0;
+            }
+        }
+    </style>
 </head>
 <body>
-    <p>안녕하세요</p>
+    <div class="sidebar">
+        <div class="profile">
+            <img src="profile.jpg" alt="프로필">
+            <h2>개발 & 연구 블로그</h2>
+            <p>AI/ML 연구 및 개발 기록</p>
+        </div>
+        <nav>
+            <ul>
+                <li>논문 리뷰</li>
+                <li>연구 노트</li>
+                <li>프로젝트</li>
+                <li>수학 & 알고리즘</li>
+            </ul>
+        </nav>
+    </div>
+
+    <main class="main-content">
+        <div class="search-bar">
+            <input type="text" placeholder="검색어를 입력하세요...">
+        </div>
+
+        <div class="posts">
+            <article class="post-card">
+                <div class="post-header">
+                    <h3 class="post-title">[논문 리뷰] Segmentation-Free Dynamic Scene Deblurring</h3>
+                    <div class="post-meta">
+                        <span>2024.11.02</span>
+                        <span>논문 리뷰</span>
+                    </div>
+                </div>
+                <p class="post-excerpt">
+                    최신 컴퓨터 비전 기술을 활용한 동적 장면 디블러링 기법에 대한 심층적 분석...
+                </p>
+                <div class="tags">
+                    <span class="tag">Computer Vision</span>
+                    <span class="tag">Deep Learning</span>
+                    <span class="tag">Image Processing</span>
+                </div>
+            </article>
+
+            <!-- 추가 포스트 카드들 -->
+        </div>
+    </main>
+
+    <script>
+        // 검색 기능 구현
+        const searchInput = document.querySelector('.search-bar input');
+        searchInput.addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase();
+            // 검색 로직 구현
+        });
+    </script>
 </body>
 </html>
