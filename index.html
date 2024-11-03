@@ -5,12 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CVIP-Sunghwan</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 
 <body>
+    <!-- HEADER -->
+     <div class="header-bar">     
+        <div class="header-text">
+            HOME
+        </div>
+    </div>
+
 
     <!-- 메뉴 버튼 -->
-
     <button id="sidebarToggle" class="sidebar-toggle">
         <span></span>
         <span></span>
@@ -19,67 +26,71 @@
 
     <!-- 사이드 바 -->
     <div class="sidebar" id="sidebar">
-    <div class="profile">
-        <div class = "profile-info">
-            <b style="font-size: 25px">Yoo Sung Hwan</b>
-            <b><p>CVIP Lab</p></b>
+        <div class="profile">
+            <div class="profile-info">
+                <b style="font-size: 25px">Yoo Sung Hwan</b>
+                <b><p>CVIP Lab</p></b>
+            </div>
+            <b>Low Level Computer Vision</b>
         </div>
-        <b>Low Level Computer Vision</b>
+
+        <!-- 메뉴 바 -->
+        <nav>
+            <ul>
+                <li>
+                    Paper Review
+                    <span class="arrow" onclick="toggleMenu('Menu1')"></span>
+                    <div id="Menu1">
+                        <div>Computer Vision</div>
+                        <div>Deep Learning</div>
+                        <div>Machine Learning</div>
+                    </div>
+                </li>
+        
+                <li>
+                    MATH
+                    <span class="arrow" onclick="toggleMenu('Menu2')"></span>
+                    <div id="Menu2">
+                        <div>Linear Algebra</div>
+                        <div>Probability and Statistics</div>
+                    </div>
+                </li>
+        
+                <li>
+                    ML
+                    <span class="arrow" onclick="toggleMenu('Menu3')"></span>
+                    <div id="Menu3">
+                        <div>Pytorch</div>
+                    </div>
+                </li>
+        
+                <li>
+                    Computer Vision
+                    <span class="arrow" onclick="toggleMenu('Menu4')"></span>
+                    <div id="Menu4">
+                        <div>Deblurring</div>
+                        <div>Classification</div>
+                    </div>
+                </li>
+            </ul>
+        </nav>
     </div>
 
-    <!-- 메뉴 바 -->
-
-    <nav>
-        <ul>
-            <li>
-                Paper Review
-                <span class="arrow" onclick="toggleMenu('Menu1')"></span>
-                <div id="Menu1">
-                    <div>Computer Vision</div>
-                    <div>Deep Learning</div>
-                    <div>Machine Learning</div>
-                </div>
-            </li>
-    
-            <li>
-                MATH
-                <span class="arrow" onclick="toggleMenu('Menu2')"></span>
-                <div id="Menu2">
-                    <div>Linear Algebra</div>
-                    <div>Probability and Statistics</div>
-                </div>
-            </li>
-    
-            <li>
-                ML
-                <span class="arrow" onclick="toggleMenu('Menu3')"></span>
-                <div id="Menu3">
-                    <div>Pytorch</div>
-                </div>
-            </li>
-    
-            <li>
-                Computer Vision
-                <span class="arrow" onclick="toggleMenu('Menu4')"></span>
-                <div id="Menu4">
-                    <div>Deblurring</div>
-                    <div>Classification</div>
-                </div>
-            </li>
-        </ul>
-    </nav>
-</div>
-
-    <!-- 검색 바 -->
-
+    <!-- 메인 컨텐츠 -->
     <main class="main-content">
+        <!-- 검색 바 -->
         <div class="search-bar">
-            <input type="text" placeholder="검색어를 입력하세요...">
+            <form class="search-input-container" onsubmit="handleSearch(event)">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" id="searchInput" placeholder="검색어를 입력하세요...">
+            </form>
         </div>
 
         <!-- 포스트 내용 -->
-
         <div class="posts">
+            <div id="noResults" style="display: none;">
+                검색 결과가 없습니다.
+            </div>
             <article class="post-card">
                 <div class="post-header">
                     <h3 class="post-title">[논문 리뷰] Segmentation-Free Dynamic Scene Deblurring</h3>
@@ -100,9 +111,6 @@
         </div>
     </main>
 
-    <!-- js 위치 -->
-
     <script src="script.js"></script>
-
 </body>
 </html>

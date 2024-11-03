@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', function() {
             isWhite = true;
         }
     });
-    
+
     // 화면 크기 변경 시
     window.addEventListener('resize', function() {
         if (window.innerWidth > 768) {
@@ -72,3 +72,47 @@ function toggleMenu(menuId) {
     menu.classList.toggle('show');
     arrow.classList.toggle('open');
 }
+
+function handleSearch(event) {
+    event.preventDefault(); // 폼 제출 기본 동작 방지
+    
+    const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+    const posts = document.querySelectorAll('.post-card');
+    
+    posts.forEach(post => {
+        const title = post.querySelector('.post-title').textContent.toLowerCase();
+        const excerpt = post.querySelector('.post-excerpt').textContent.toLowerCase();
+        const tags = Array.from(post.querySelectorAll('.tag'))
+            .map(tag => tag.textContent.toLowerCase());
+        
+        // 제목, 내용, 태그에서 검색어 확인
+        const isMatch = title.includes(searchTerm) || 
+                       excerpt.includes(searchTerm) ||
+                       tags.some(tag => tag.includes(searchTerm));
+        
+        // 검색 결과에 따라 포스트 표시/숨김
+        post.style.display = isMatch ? 'block' : 'none';
+
+        const hasResults = Array.from(posts).some(post => post.style.display === 'block');
+        document.getElementById('noResults').style.display = hasResults ? 'none' : 'block';
+    });
+}
+
+// 실시간 검색을 위한 이벤트 리스너
+document.getElementById('searchInput').addEventListener('input', function(e) {
+    const searchTerm = e.target.value.toLowerCase();
+    const posts = document.querySelectorAll('.post-card');
+    
+    posts.forEach(post => {
+        const title = post.querySelector('.post-title').textContent.toLowerCase();
+        const excerpt = post.querySelector('.post-excerpt').textContent.toLowerCase();
+        const tags = Array.from(post.querySelectorAll('.tag'))
+            .map(tag => tag.textContent.toLowerCase());
+        
+        const isMatch = title.includes(searchTerm) || 
+                       excerpt.includes(searchTerm) ||
+                       tags.some(tag => tag.includes(searchTerm));
+        
+        post.style.display = isMatch ? 'block' : 'none';
+    });
+});
