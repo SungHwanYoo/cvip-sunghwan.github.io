@@ -1,47 +1,74 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // 메인 사이드바 토글 관련 요소
     const sidebarToggle = document.getElementById('sidebarToggle');
+    const sidebarSpan = document.querySelectorAll('.sidebar-toggle span');
     const sidebar = document.getElementById('sidebar');
     const mainContent = document.querySelector('.main-content');
-    
-    // 사이드바 내부 서브메뉴 토글 관련 요소
-    const leftInner2 = document.getElementById('leftInner2');
-    const arrow = document.getElementById('arrow');
+
+    let isWhite = false; // 상태를 추적하는 변수 추가
 
     // 메인 사이드바 토글 기능
     sidebarToggle.addEventListener('click', function() {
         sidebar.classList.toggle('active');
         sidebarToggle.classList.toggle('active');
         mainContent.classList.toggle('shifted');
-    });
+        
+        // 토글 후 스크롤 위치 재조정
+        mainContent.scrollTop = mainContent.scrollTop;
 
-    // 검색 기능
-    const searchInput = document.querySelector('.search-bar input');
-    searchInput.addEventListener('input', (e) => {
-        const searchTerm = e.target.value.toLowerCase();
-        // 검색 로직 구현
+        // 색상 토글 로직
+        if (isWhite) {
+            sidebarSpan.forEach(span => {
+                span.style.backgroundColor = "#333";
+            });
+            isWhite = false;
+        } else {
+            sidebarSpan.forEach(span => {
+                span.style.backgroundColor = "#fff";
+            });
+            isWhite = true;
+        }
     });
-
-    // 화면 크기가 변경될 때 사이드바 상태 조정
+    
+    // 화면 크기 변경 시
     window.addEventListener('resize', function() {
         if (window.innerWidth > 768) {
             sidebar.classList.remove('active');
             sidebarToggle.classList.remove('active');
             mainContent.classList.remove('shifted');
+            
+            // 리사이즈 후 스크롤 위치 재조정
+            mainContent.scrollTop = mainContent.scrollTop;
         }
+    });
+
+    // 스크롤 이벤트 처리
+    mainContent.addEventListener('scroll', function(e) {
+        e.stopPropagation(); // 스크롤 이벤트 전파 방지
     });
 });
 
 // 서브메뉴 토글 함수
-function openDiv() {
-    const leftInner2 = document.getElementById('leftInner2');
-    const arrow = document.getElementById('arrow');
-
-    if (leftInner2.style.display === 'none') {
-        leftInner2.style.display = 'block';
-        arrow.style.transform = 'rotate(90deg)';
-    } else {
-        leftInner2.style.display = 'none';
-        arrow.style.transform = 'rotate(0deg)';
-    }
+function toggleMenu(menuId) {
+    const menu = document.getElementById(menuId);
+    const arrow = menu.previousElementSibling;
+    
+    // 다른 열린 메뉴들 닫기
+    const allMenus = document.querySelectorAll('[id^="Menu"]');
+    const allArrows = document.querySelectorAll('.arrow');
+    
+    allMenus.forEach((item) => {
+        if(item.id !== menuId && item.classList.contains('show')) {
+            item.classList.remove('show');
+        }
+    });
+    
+    allArrows.forEach((item) => {
+        if(item !== arrow && item.classList.contains('open')) {
+            item.classList.remove('open');
+        }
+    });
+    
+    // 선택된 메뉴 토글
+    menu.classList.toggle('show');
+    arrow.classList.toggle('open');
 }

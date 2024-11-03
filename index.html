@@ -6,41 +6,78 @@
     <title>CVIP-Sunghwan</title>
     <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
+
+    <!-- 메뉴 버튼 -->
+
     <button id="sidebarToggle" class="sidebar-toggle">
         <span></span>
         <span></span>
         <span></span>
     </button>
 
+    <!-- 사이드 바 -->
     <div class="sidebar" id="sidebar">
     <div class="profile">
-        <img src="profile.jpg" alt="프로필">
-        <h2>개발 & 연구 블로그</h2>
-        <p>AI/ML 연구 및 개발 기록</p>
+        <div class = "profile-info">
+            <b style="font-size: 25px">Yoo Sung Hwan</b>
+            <b><p>CVIP Lab</p></b>
+        </div>
+        <b>Low Level Computer Vision</b>
     </div>
+
+    <!-- 메뉴 바 -->
+
     <nav>
         <ul>
             <li>
                 Paper Review
-                <span id="arrow" onclick="openDiv()" class="arrow"></span>
-                <div id="leftInner2" style="display: none;">
+                <span class="arrow" onclick="toggleMenu('Menu1')"></span>
+                <div id="Menu1">
                     <div>Computer Vision</div>
                     <div>Deep Learning</div>
                     <div>Machine Learning</div>
                 </div>
             </li>
-            <li>MATH</li>
-            <li>ML</li>
-            <li>Computer Vision</li>
+    
+            <li>
+                MATH
+                <span class="arrow" onclick="toggleMenu('Menu2')"></span>
+                <div id="Menu2">
+                    <div>Linear Algebra</div>
+                    <div>Probability and Statistics</div>
+                </div>
+            </li>
+    
+            <li>
+                ML
+                <span class="arrow" onclick="toggleMenu('Menu3')"></span>
+                <div id="Menu3">
+                    <div>Pytorch</div>
+                </div>
+            </li>
+    
+            <li>
+                Computer Vision
+                <span class="arrow" onclick="toggleMenu('Menu4')"></span>
+                <div id="Menu4">
+                    <div>Deblurring</div>
+                    <div>Classification</div>
+                </div>
+            </li>
         </ul>
     </nav>
 </div>
+
+    <!-- 검색 바 -->
 
     <main class="main-content">
         <div class="search-bar">
             <input type="text" placeholder="검색어를 입력하세요...">
         </div>
+
+        <!-- 포스트 내용 -->
 
         <div class="posts">
             <article class="post-card">
@@ -63,6 +100,9 @@
         </div>
     </main>
 
+    <!-- js 위치 -->
+
     <script src="script.js"></script>
+
 </body>
 </html>
